@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Button Demo</title>
+    <link rel="stylesheet" href="button.css">
+</head>
+<body>
+    <button class="custom-button">Review and book</button>
+    <script>
+        const button = document.querySelector('.custom-button');
+        const originalText = button.textContent;
+        
+        button.addEventListener('click', () => {
+            const width = button.offsetWidth;
+            button.style.width = `${width}px`;
+            button.textContent = 'Reviewing details';
+            button.classList.add('loading');
+            
+            setTimeout(() => {
+                button.classList.add('animate');
+            }, 10);
+
+            setTimeout(() => {
+                button.classList.remove('loading', 'animate');
+                button.textContent = 'Success';
+            }, 2100);
+
+            // Reset to original state after showing success
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.width = '';
+            }, 3100);  // Give 1 second to show success message
+        });
+    </script>
+</body>
+</html>
