@@ -10,6 +10,7 @@ body {
 
 .custom-button {
   height: 48px;
+  width: 360px;
   background-color: #FEED5A;
   color: #333333;
   padding: 0 20px;
@@ -22,6 +23,13 @@ body {
   overflow: hidden;
   white-space: nowrap;
   z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.button-text {
+  flex: 1;
+  text-align: center;
 }
 
 .custom-button:hover {
@@ -52,4 +60,16 @@ body {
 
 .custom-button.loading.animate::before {
   background-position: left bottom;
+}
+
+.tick-icon {
+  width: 20px;
+  height: 20px;
+  display: none;
+  position: absolute;
+  right: 16px;
+}
+
+.success .tick-icon {
+  display: block;
 }

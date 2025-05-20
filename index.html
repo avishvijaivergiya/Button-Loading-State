@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="button.css">
 </head>
 <body>
-    <button class="custom-button">Review and book</button>
+    <button class="custom-button">
+        <span class="button-text">Review and book</span>
+        <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
     <script>
         const button = document.querySelector('.custom-button');
-        const originalText = button.textContent;
+        const buttonText = button.querySelector('.button-text');
+        const originalText = buttonText.textContent;
         
         button.addEventListener('click', () => {
-            const width = button.offsetWidth;
-            button.style.width = `${width}px`;
-            button.textContent = 'Reviewing details';
+            buttonText.textContent = 'Reviewing details';
             button.classList.add('loading');
             
             setTimeout(() => {
@@ -24,14 +28,14 @@
 
             setTimeout(() => {
                 button.classList.remove('loading', 'animate');
-                button.textContent = 'Success';
+                buttonText.textContent = 'Success';
+                button.classList.add('success');
             }, 2100);
 
-            // Reset to original state after showing success
             setTimeout(() => {
-                button.textContent = originalText;
-                button.style.width = '';
-            }, 3100);  // Give 1 second to show success message
+                buttonText.textContent = originalText;
+                button.classList.remove('success');
+            }, 3100);
         });
     </script>
 </body>
