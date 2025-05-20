@@ -3,20 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Button Demo</title>
+    <title>Booking Form</title>
     <link rel="stylesheet" href="button.css">
 </head>
 <body>
-    <button class="custom-button">
-        <span class="button-text">Review and book</span>
-        <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </button>
+    <div class="container">
+        <div class="header">
+            <a href="#" class="back-link">← Back</a>
+            <h1>Review and book</h1>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://placekitten.com/64/64" alt="Doctor" class="doctor-avatar">
+            <div class="doctor-info">
+                <h2>Dr. ConversionTeam AutomatedTest, MD</h2>
+                <p class="specialty">Primary Care Doctor</p>
+                <p class="appointment-time">Thu, Mar 27 at 2:15pm · <a href="#">Update</a></p>
+                <p class="address">123, testing address, hbhbh, New York, AK 10012</p>
+                <p class="reason">Illness</p>
+            </div>
+        </div>
+
+        <section class="patient-info">
+            <h2>Patient information</h2>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="patient" checked>
+                    <span>Spicy Salmon (me)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="patient">
+                    <span>Baby Shark</span>
+                </label>
+            </div>
+
+            <div class="new-patient-question">
+                <p>Are you a new patient?</p>
+                <div class="toggle-buttons">
+                    <button class="toggle-btn">Yes</button>
+                    <button class="toggle-btn active">No</button>
+                </div>
+            </div>
+
+            <a href="#" class="booking-link">I'm booking for someone else</a>
+        </section>
+
+        <section class="insurance-info">
+            <h2>Insurance information</h2>
+            <div class="insurance-selection">
+                <div class="insurance-header">
+                    <span>Insurance</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+                <p class="selected-insurance">Cigna - PPO</p>
+            </div>
+
+            <div class="member-id">
+                <label>Member ID (optional)</label>
+                <p class="helper-text">Your member ID helps your provider verify your coverage. You can find this on your insurance card. <a href="#">Learn more</a></p>
+                <input type="text" class="member-input">
+            </div>
+        </section>
+
+        <section class="notes-section">
+            <a href="#" class="add-note">Add a note for the practice (optional)</a>
+        </section>
+
+        <div class="requirements-box">
+            <h3>Additional requirements before your booking is finalized</h3>
+            <p>Please note that your appointment is not finalized until details are verified with ZD General Test Practice, where Dr. ConversionTeam AutomatedTest, MD is affiliated. Following your booking, they will reach out via phone and/or email within 1-2 business days to verify appointment details, such as payment information and cancellation policies.</p>
+        </div>
+
+        <div class="terms">
+            <label class="checkbox-container">
+                <input type="checkbox" checked>
+                <span>I certify that the insurance or payment selected is the one that I will be using when I see this medical professional, and that I have read and agree to the <a href="#">Zocdoc terms of use</a>.</span>
+            </label>
+        </div>
+
+        <div class="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2 class="modal-title">You have a similar appointment booked</h2>
+                    <button class="close-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="appointment-card">
+                    <img src="https://placekitten.com/64/64" alt="Doctor" class="doctor-avatar">
+                    <div>
+                        <h3>Dr. ConversionTeam AutomatedTest</h3>
+                        <p>Wed, Mar 26 at 9:45 AM EDT</p>
+                        <p>Illness</p>
+                    </div>
+                </div>
+                <div class="modal-content">
+                    <p class="modal-text">Looks like you already have an appointment with Dr. AutomatedTest. You can continue and still book this appointment, or we can cancel your existing appointment and replace it with this one.</p>
+                    <div class="modal-buttons">
+                        <button class="modal-btn secondary">Continue anyway</button>
+                        <button class="modal-btn primary">Replace existing appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="custom-button">
+            <span class="button-text">Book appointment</span>
+            <svg class="warning-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6V10M10 14H10.01M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
     <script>
         const button = document.querySelector('.custom-button');
         const buttonText = button.querySelector('.button-text');
         const originalText = buttonText.textContent;
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const closeButton = document.querySelector('.close-button');
+        const continueButton = document.querySelector('.modal-btn.secondary');
+        const replaceButton = document.querySelector('.modal-btn.primary');
+        const radioButtons = document.querySelectorAll('input[name="patient"]');
         
         button.addEventListener('click', () => {
             buttonText.textContent = 'Reviewing details';
@@ -26,16 +138,56 @@
                 button.classList.add('animate');
             }, 10);
 
-            setTimeout(() => {
-                button.classList.remove('loading', 'animate');
-                buttonText.textContent = 'Success';
-                button.classList.add('success');
-            }, 2100);
+            // Check which patient is selected
+            const selectedPatient = document.querySelector('input[name="patient"]:checked').closest('.radio-option').querySelector('span').textContent;
 
             setTimeout(() => {
+                button.classList.remove('loading', 'animate');
+                
+                if (selectedPatient.includes('Spicy Salmon')) {
+                    // Show error state and modal
+                    buttonText.textContent = 'Error';
+                    button.classList.add('error');
+                    modalOverlay.classList.add('show');
+                } else {
+                    // Show success state and redirect
+                    buttonText.textContent = 'Success';
+                    button.classList.add('success');
+                    
+                    // Redirect after showing success for a moment
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 1000);
+                }
+            }, 2100);
+        });
+
+        // Close modal handlers
+        closeButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('show');
+            buttonText.textContent = originalText;
+            button.classList.remove('error');
+        });
+
+        continueButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('show');
+            buttonText.textContent = originalText;
+            button.classList.remove('error');
+        });
+
+        replaceButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('show');
+            buttonText.textContent = originalText;
+            button.classList.remove('error');
+        });
+
+        // Close modal when clicking outside
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('show');
                 buttonText.textContent = originalText;
-                button.classList.remove('success');
-            }, 3100);
+                button.classList.remove('error');
+            }
         });
     </script>
 </body>
