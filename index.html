@@ -110,20 +110,24 @@
         </div>
 
         <button class="custom-button">
-            <span class="button-text">Book appointment</span>
-            <svg class="warning-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6V10M10 14H10.01M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="button-text">
+                <svg class="warning-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6V10M10 14H10.01M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Book appointment
+            </span>
         </button>
     </div>
 
     <script>
         const button = document.querySelector('.custom-button');
         const buttonText = button.querySelector('.button-text');
-        const originalText = buttonText.textContent;
+        const warningIcon = button.querySelector('.warning-icon');
+        const tickIcon = button.querySelector('.tick-icon');
+        const originalHtml = buttonText.innerHTML;
         const modalOverlay = document.querySelector('.modal-overlay');
         const closeButton = document.querySelector('.close-button');
         const continueButton = document.querySelector('.modal-btn.secondary');
@@ -131,30 +135,39 @@
         const radioButtons = document.querySelectorAll('input[name="patient"]');
         
         button.addEventListener('click', () => {
-            buttonText.textContent = 'Reviewing details';
+            buttonText.innerHTML = 'Reviewing details';
             button.classList.add('loading');
             
             setTimeout(() => {
                 button.classList.add('animate');
             }, 10);
 
-            // Check which patient is selected
-            const selectedPatient = document.querySelector('input[name="patient"]:checked').closest('.radio-option').querySelector('span').textContent;
+            const selectedPatient = document.querySelector('input[name="patient"]:checked')
+                .closest('.radio-option').querySelector('span').textContent;
 
             setTimeout(() => {
                 button.classList.remove('loading', 'animate');
                 
                 if (selectedPatient.includes('Spicy Salmon')) {
                     // Show error state and modal
-                    buttonText.textContent = 'Error';
+                    buttonText.innerHTML = `
+                        <svg class="warning-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 6V10M10 14H10.01M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Error
+                    `;
                     button.classList.add('error');
                     modalOverlay.classList.add('show');
                 } else {
                     // Show success state and redirect
-                    buttonText.textContent = 'Success';
+                    buttonText.innerHTML = `
+                        <svg class="tick-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Success
+                    `;
                     button.classList.add('success');
                     
-                    // Redirect after showing success for a moment
                     setTimeout(() => {
                         window.location.href = 'success.html';
                     }, 1000);
@@ -165,19 +178,19 @@
         // Close modal handlers
         closeButton.addEventListener('click', () => {
             modalOverlay.classList.remove('show');
-            buttonText.textContent = originalText;
+            buttonText.innerHTML = originalHtml;
             button.classList.remove('error');
         });
 
         continueButton.addEventListener('click', () => {
             modalOverlay.classList.remove('show');
-            buttonText.textContent = originalText;
+            buttonText.innerHTML = originalHtml;
             button.classList.remove('error');
         });
 
         replaceButton.addEventListener('click', () => {
             modalOverlay.classList.remove('show');
-            buttonText.textContent = originalText;
+            buttonText.innerHTML = originalHtml;
             button.classList.remove('error');
         });
 
@@ -185,7 +198,7 @@
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
                 modalOverlay.classList.remove('show');
-                buttonText.textContent = originalText;
+                buttonText.innerHTML = originalHtml;
                 button.classList.remove('error');
             }
         });
