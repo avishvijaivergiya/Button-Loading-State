@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button States Demo</title>
+    <link rel="stylesheet" href="button.css">
+    <style>
+        .state-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .state-label {
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .indeterminate-bar {
+            width: 360px;
+            height: 4px;
+            background: #f0f0f0;
+            overflow: hidden;
+            border-radius: 2px;
+            margin-top: 8px;
+            position: relative;
+        }
+        .indeterminate-bar-inner {
+            position: absolute;
+            height: 100%;
+            width: 40%;
+            background: #FDD832;
+            animation: indeterminate-bar-move 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes indeterminate-bar-move {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Button States Demo</h1>
+        <div class="state-demo">
+            <div>
+                <div class="state-label">Loading (indeterminate background)</div>
+                <button class="custom-button indeterminate-loading" style="pointer-events: none;">
+                    <span class="button-text">Reviewing details</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

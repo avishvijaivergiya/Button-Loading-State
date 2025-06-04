@@ -281,6 +281,35 @@ h2 {
   color: #333333;
 }
 
+/* Indeterminate loading: solid bar, 30% width, moves left-right then right-left (single bar) */
+.custom-button.indeterminate-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(58, 47, 31, 0.1) 15%, rgba(58, 47, 31, 0.1) 85%, transparent 100%);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+  animation: indeterminate-bar-carousel 1.8s linear infinite;
+  transform: translateX(-50%);
+}
+
+.custom-button.indeterminate-loading::after {
+  content: none;
+}
+
+@keyframes indeterminate-bar-carousel {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Modal styles */
 .modal-overlay {
   position: fixed;
